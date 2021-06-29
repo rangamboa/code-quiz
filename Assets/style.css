@@ -28,6 +28,10 @@ main {
     border: 1px solid grey;
 }
 
+section {
+    border: 1px dotted green;
+}
+
 section div {
     text-align: center;
 }
@@ -41,4 +45,8 @@ button {
     border-radius: 5px;
     color: #eee;
     background-color: mediumpurple;
+}
+
+.hidden {
+    display: none;
 }
