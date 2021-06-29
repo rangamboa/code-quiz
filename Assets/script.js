@@ -1,9 +1,10 @@
 // Declare global variables.
 var count = 0;
-var timer = 75;
+var timer = 1000;
 var timeInterval;
 var score;
 var highScores;
+var message;
 
 // Assign variables to various parts of HTML.
 var timerEl = document.querySelector('#timeLeft');
@@ -26,14 +27,17 @@ var questionsArray = [q0, q1, q2, q3, q4];
 function init() {
 
     // (Re)set the screen to play.
-    introEl.classList.remove('hidden')
+    introEl.classList.remove('hidden');
     quizEl.setAttribute('class', 'hidden');
+    statusEl.setAttribute('class', 'hidden');
     timerEl.textContent = timer;
 }
 
 function displayQ () {
 
     // Cycle through all questions in array.
+
+    // statusEl.classList.remove('hidden');
 
     if (count < questionsArray.length) {
 
@@ -60,6 +64,13 @@ function displayQ () {
         quizEl.setAttribute('class', 'hidden');
         statusEl.setAttribute('class', 'hidden');     
     }
+}
+
+function showStatus(message) {
+    statusEl.classList.remove('hidden');
+    console.log('showstatus function called');
+    console.log(message);
+    statusEl.innerHTML = message;
 }
 
 // Listen for a mouse click on the 'Begin Quiz' button.
@@ -99,20 +110,17 @@ quizEl.addEventListener('click', function(event) {
     // Pull the first value of the string. This corresponds to its position in the array.
     var firstChar = event.target.textContent.charAt(0);
 
-    console.log(firstChar + ' and ' + questionsArray[count][5]);
+    // console.log(firstChar + ' and ' + questionsArray[count][5]);
             
     // Compare value of selected string vs. value of correct answer.
     if (firstChar == questionsArray[count][5]) {
-        console.log('Right answer!');
-        statusEl.innerHTML = 'Correct!';
-            } else {
-        console.log('Wrong answer!');
-        statusEl.innerHTML = 'YOU SUCK';
+        message = 'YASSSSSS';
+    } else {
+        message = 'NOOOOOOO!';
         timer-=10;
         timerEl.textContent = timer;
     }
-
-    setTimeout(3000);
+    showStatus(message);
 
     // Displays the next question regardless of right/wrong answer.
     count++;
