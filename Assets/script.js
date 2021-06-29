@@ -4,6 +4,7 @@ var timer = 100;
 var score;
 var highScores;
 var choices;
+var choicesEl;
 var choiceAnswer;
 var correctAnswer;
 
@@ -52,8 +53,6 @@ function displayQ () {
             return;
         }
 
-        console.log(questionsArray.length);
-
         // Cycle through all questions in array.
         if (count < questionsArray.length) {
             
@@ -71,12 +70,13 @@ function displayQ () {
 
                 // Add the buttons to the div.
                 quizEl.innerHTML += buildBtn;
-            }
-            
-            choices = document.getElementsByClassName('multiChoice');
-            choices.addEventListener('click', function() {
+            };
+    
+        quizEl.addEventListener('click', function() {
+            console.log('multiple choice button clicked');
+            console.log()
+        });
 
-            });
         }
     }, 1000);
 }
