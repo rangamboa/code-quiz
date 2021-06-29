@@ -1,6 +1,6 @@
 // Declare global variables.
 var count = 0 ;
-var timer = 100;
+var timer = 10;
 var score;
 var highScores;
 var choices;
@@ -37,48 +37,51 @@ function init() {
 
 function displayQ () {
 
-    // Unhide quizDiv (div containing the quiz questions).
-    quizEl.classList.remove('hidden');
+    quizEl.innerHTML = '';
 
-    // Start a timer counting every 1 second.
-    var timeInterval = setInterval(function() {
-
-        // Decrements and displays the remaining time.
-        timer--;
-        timerEl.textContent = timer;
-
-        if (timer == 0) {
-            console.log('TIME IS UP SUCKAAAA');
-            clearInterval(timeInterval)
-            return;
-        }
-
-        // Cycle through all questions in array.
-        if (count < questionsArray.length) {
+    // Cycle through all questions in array.
+    if (count < questionsArray.length) {
             
-            quizEl.innerHTML = '<h1>' + questionsArray[count][0] + '</h1>';
+        quizEl.innerHTML = '<h1>' + questionsArray[count][0] + '</h1>';
 
-            // Cycle through all multiple choice answers in each subarray.
-            for (j = 1; j < questionsArray[count].length-1; j++) {
+        // Cycle through all multiple choice answers in each subarray.
+        for (j = 1; j < questionsArray[count].length-1; j++) {
 
-                // Build IDs for answer buttons.
-                var buildBtnID = 'answer-' + j;
-                var btnClass = 'multiChoice';
+            // Build IDs for answer buttons.
+            var buildBtnID = 'answer-' + j;
+            var btnClass = 'multiChoice';
 
-                // Build the HTML for the actual buttons.
-                var buildBtn = '<button id='+ buildBtnID +' class='+ btnClass +'>' + j + '. ' + questionsArray[count][j] + '</button><br />';
+            // Build the HTML for the actual buttons.
+            var buildBtn = '<button id='+ buildBtnID +' class='+ btnClass +'>' + j + '. ' + questionsArray[count][j] + '</button><br />';
 
-                // Add the buttons to the div.
-                quizEl.innerHTML += buildBtn;
-            };
+            // Add the buttons to the div.
+            quizEl.innerHTML += buildBtn;
+        };
     
-        quizEl.addEventListener('click', function() {
-            console.log('multiple choice button clicked');
-            console.log()
+        // Listen for clicks on any multiple choice button.
+        quizEl.addEventListener('click', function(event) {
+
+            // Pull the first value of the string. This corresponds to its position in the array.
+            var firstChar = event.target.textContent.charAt(0);
+            console.log(firstChar);
+            console.log(questionsArray[count][5]);
+
+            // Compare value of selected string vs. value of correct answer.
+            if (firstChar == questionsArray[count][5]) console.log('Right answer!');
+            else {
+                console.log('Wrong answer!');
+                timer-=10;
+            }
         });
 
-        }
-    }, 1000);
+    }
+
+    // Go to the next question in array.
+    count++;
+
+    // Call function again.
+    displayQ();
+
 }
 
 // Listen for a mouse click on the 'Begin Quiz' button.
@@ -90,6 +93,23 @@ beginBtn.addEventListener('click', function(event) {
 
     // Hide the div containing the introductory text.
     introEl.className = 'hidden';
+
+    // Unhide quizDiv (div containing the quiz questions).
+        quizEl.classList.remove('hidden');
+
+    // Start a timer counting every 1 second.
+    var timeInterval = setInterval(function() {
+    
+        // Decrements and displays the remaining time.
+        timer--;
+        timerEl.textContent = timer;
+    
+        if (timer == 0) {
+            console.log('TIME IS UP SUCKAAAA');
+            clearInterval(timeInterval);
+            return;
+        }
+    }, 1000);
 
     // Launch the function to display the first question.
     displayQ();
