@@ -4,16 +4,13 @@ var timer = 75;
 var timeInterval;
 var score;
 var highScores;
-var choices;
-var choicesEl;
-var choiceAnswer;
-var correctAnswer;
 
 // Assign variables to various parts of HTML.
 var timerEl = document.querySelector('#timeLeft');
 var introEl = document.querySelector('#intro');
 var beginBtn = document.querySelector('#begin');
 var quizEl = document.querySelector('#quizDiv');
+var statusEl = document.querySelector('#status')
 
 // Declare multiple-choice questions and corresponding answers in respective arrays.
 // The last element in the array signifies the position of the right answer.
@@ -28,11 +25,10 @@ var questionsArray = [q0, q1, q2, q3, q4];
 
 function init() {
 
-    // (Re)sets the screen to play.
+    // (Re)set the screen to play.
     introEl.classList.remove('hidden')
     quizEl.setAttribute('class', 'hidden');
     timerEl.textContent = timer;
-
 }
 
 function displayQ () {
@@ -41,6 +37,7 @@ function displayQ () {
 
     if (count < questionsArray.length) {
 
+        // Display question and possible answers by generating HTML.
         quizEl.innerHTML = '<h1>' + questionsArray[count][0] + '</h1>';
 
         // Cycle through all multiple choice answers in each subarray.
@@ -61,6 +58,7 @@ function displayQ () {
         clearInterval(timeInterval);
         console.log(timer);
         quizEl.setAttribute('class', 'hidden');
+        statusEl.setAttribute('class', 'hidden');     
     }
 }
 
@@ -86,6 +84,7 @@ beginBtn.addEventListener('click', function(event) {
             console.log('TIME IS UP SUCKAAAA');
             clearInterval(timeInterval);
             quizEl.setAttribute('class', 'hidden');
+            statusEl.setAttribute('class', 'hidden');
             return;
         }
     }, 1000);
@@ -105,10 +104,15 @@ quizEl.addEventListener('click', function(event) {
     // Compare value of selected string vs. value of correct answer.
     if (firstChar == questionsArray[count][5]) {
         console.log('Right answer!');
-    } else {
+        statusEl.innerHTML = 'Correct!';
+            } else {
         console.log('Wrong answer!');
+        statusEl.innerHTML = 'YOU SUCK';
         timer-=10;
+        timerEl.textContent = timer;
     }
+
+    setTimeout(3000);
 
     // Displays the next question regardless of right/wrong answer.
     count++;

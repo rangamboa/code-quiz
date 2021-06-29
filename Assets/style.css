@@ -42,8 +42,14 @@ section div {
 }
 
 #quizDiv {
+    margin: 20px;
     border: 1px dotted black;
     text-align: left;
+}
+
+#status {
+    margin: 20px auto;
+    background-color: grey;
 }
 
 section p {
