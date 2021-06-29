@@ -36,17 +36,37 @@ section div {
     text-align: center;
 }
 
+#container {
+    width:40%;
+    margin: 0px auto;
+}
+
+#quizDiv {
+    border: 1px dotted black;
+    text-align: left;
+}
+
 section p {
     margin: 10px auto;
 }
 
 button {
     padding: 3px;
+    margin-top: 5px;
     border-radius: 5px;
     color: #eee;
     background-color: mediumpurple;
 }
 
+button:hover {
+    opacity: 75%;
+    cursor: pointer;
+}
+
 .hidden {
     display: none;
+}
+
+.multiChoice {
+    border-bottom: 3px solid red;
 }
