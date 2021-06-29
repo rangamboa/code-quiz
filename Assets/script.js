@@ -32,15 +32,14 @@ function init() {
     quizEl.setAttribute('class', 'hidden');
     timerEl.textContent = timer;
 
+    console.log(count);
     console.log(questionsArray);
 }
 
 function displayQ () {
 
-    quizEl.innerHTML = '';
-
     // Cycle through all questions in array.
-    if (count < questionsArray.length) {
+    do {
             
         quizEl.innerHTML = '<h1>' + questionsArray[count][0] + '</h1>';
 
@@ -73,14 +72,18 @@ function displayQ () {
                 timer-=10;
             }
         });
-
+        count++;
+        quizEl.innerHTML = '';
     }
 
+    while (count < questionsArray.length);
+
     // Go to the next question in array.
-    count++;
+  
+    // quizEl.innerHTML = '';
 
     // Call function again.
-    displayQ();
+    // displayQ();
 
 }
 
@@ -107,6 +110,7 @@ beginBtn.addEventListener('click', function(event) {
         if (timer == 0) {
             console.log('TIME IS UP SUCKAAAA');
             clearInterval(timeInterval);
+            quizEl.setAttribute('class', 'hidden');
             return;
         }
     }, 1000);
