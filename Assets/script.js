@@ -1,6 +1,6 @@
 // Declare global variables.
 var count = 0;
-var timer = 1000;
+var timer = 75;
 var timeInterval;
 var score;
 var highScores;
@@ -15,11 +15,11 @@ var statusEl = document.querySelector('#status')
 
 // Declare multiple-choice questions and corresponding answers in respective arrays.
 // The last element in the array signifies the position of the right answer.
-var q0 = ['1. Which built-in method returns the length of the string?', 'length()', 'size()', 'index()', 'toString()', '1'];
-var q1 = ['2. JavaScript is a _____-side programming language.', 'client', 'server', 'both', 'none', '3'];
-var q2 = ['3. What is the correct "if" statement to execute code if "x" is equal to 2?', 'if (x 2)', 'if (x = 2)', 'if (x == 2)', 'if (x != 2)', '3'];
-var q3 = ['4. Which of the following is NOT a valid function call?', 'var x = myFunc()', 'myFunc', 'x = myFunc()', 'myFunc()', '2'];
-var q4 = ['5. Which is an advantage of using JavaScript?', 'less server interaction', 'immediate feedback to visitors', 'increased interactivity', 'all of the above', '4'];
+var q0 = ['Which built-in method returns the length of the string?', 'length()', 'size()', 'index()', 'toString()', '1'];
+var q1 = ['JavaScript is a _____-side programming language.', 'client', 'server', 'both', 'none', '3'];
+var q2 = ['What is the correct "if" statement to execute code if "x" is equal to 2?', 'if (x 2)', 'if (x = 2)', 'if (x == 2)', 'if (x != 2)', '3'];
+var q3 = ['Which of the following is NOT a valid function call?', 'var x = myFunc()', 'myFunc', 'x = myFunc()', 'myFunc()', '2'];
+var q4 = ['Which is an advantage of using JavaScript?', 'less server interaction', 'immediate feedback to visitors', 'increased interactivity', 'all of the above', '4'];
 
 // Combine all arrays into a single large array.
 var questionsArray = [q0, q1, q2, q3, q4];
@@ -119,7 +119,7 @@ quizEl.addEventListener('click', function(event) {
 
     statusEl.innerHTML = '<hr /><br />' + message;
 
-    setTimeout(hideStatus, 2000);
+    setTimeout(hideStatus, 1250);
 
     // Displays the next question regardless of right/wrong answer.
     count++;
