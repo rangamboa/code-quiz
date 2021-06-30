@@ -29,15 +29,17 @@ function init() {
     // (Re)set the screen to play.
     introEl.classList.remove('hidden');
     quizEl.setAttribute('class', 'hidden');
-    statusEl.setAttribute('class', 'hidden');
+    // statusEl.setAttribute('class', 'hidden');
     timerEl.textContent = timer;
+}
+
+function hideStatus() {
+    statusEl.innerHTML = '';
 }
 
 function displayQ () {
 
     // Cycle through all questions in array.
-
-    // statusEl.classList.remove('hidden');
 
     if (count < questionsArray.length) {
 
@@ -61,17 +63,14 @@ function displayQ () {
         console.log('no more questions');
         clearInterval(timeInterval);
         console.log(timer);
-        quizEl.setAttribute('class', 'hidden');
-        statusEl.setAttribute('class', 'hidden');     
+
+        // go to high scores function.
+        // quizEl.setAttribute('class', 'hidden');
+        // statusEl.setAttribute('class', 'hidden');     
     }
 }
 
-function showStatus(message) {
-    statusEl.classList.remove('hidden');
-    console.log('showstatus function called');
-    console.log(message);
-    statusEl.innerHTML = message;
-}
+
 
 // Listen for a mouse click on the 'Begin Quiz' button.
 beginBtn.addEventListener('click', function(event) {
@@ -109,9 +108,7 @@ quizEl.addEventListener('click', function(event) {
 
     // Pull the first value of the string. This corresponds to its position in the array.
     var firstChar = event.target.textContent.charAt(0);
-
-    // console.log(firstChar + ' and ' + questionsArray[count][5]);
-            
+          
     // Compare value of selected string vs. value of correct answer.
     if (firstChar == questionsArray[count][5]) {
         message = 'YASSSSSS';
@@ -120,12 +117,15 @@ quizEl.addEventListener('click', function(event) {
         timer-=10;
         timerEl.textContent = timer;
     }
-    showStatus(message);
+
+    statusEl.innerHTML = '<hr /><br />' + message;
+
+    setTimeout(hideStatus, 2000);
 
     // Displays the next question regardless of right/wrong answer.
     count++;
     displayQ();
 });
  
-// Launch function to initialize application.
+// Launch function and initialize settings.
 init();

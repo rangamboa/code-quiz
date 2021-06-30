@@ -51,7 +51,8 @@ section div {
     margin: 20px auto;
     padding: 20px;
     text-align: left;
-    border-top: 1px solid grey;
+    color: grey;
+    font-style: italic;
 }
 
 section p {
@@ -66,14 +67,14 @@ button {
     background-color: mediumpurple;
 }
 
+.hidden {
+    display: none;
+}
+
 button:hover {
     opacity: 75%;
     cursor: pointer;
     color: white;
-}
-
-.hidden {
-    display: none;
 }
 
 .multiChoice {
