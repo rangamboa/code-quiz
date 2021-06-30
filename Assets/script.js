@@ -6,6 +6,7 @@ var score;
 var highScore = [];
 var highScores = [];
 var message;
+var iteration = 0;
 
 // Assign variables to various parts of HTML.
 var timerEl = document.querySelector('#timeLeft');
@@ -64,14 +65,15 @@ function storeScore() {
         // highScores[iteration][0] = playerScore.player;
         // highScores[iteration][1] = playerScore.score;
 
+        // My iteration variable keeps resetting to 0 and I can't figure out why.
+
         console.log(highScores);
 
         localStorage.setItem('playerScore', JSON.stringify(playerScore));
 
         // Store initials and score into an array of high scores.
-
-
       });
+      iteration++;
 }
 
 function displayScores() {
