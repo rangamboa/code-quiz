@@ -17,6 +17,7 @@ var statusEl = document.querySelector('#status');
 var scoreDisp = document.querySelector('#scoreDisplay');
 var initInput = document.querySelector('#initials');
 var submitBtnEl = document.querySelector('#submitBtn');
+var hiScoresBtn = document.querySelector('#hiScores');
 
 // Declare multiple-choice questions and corresponding answers in respective arrays.
 // The last element in the array signifies the position of the right answer.
@@ -52,7 +53,7 @@ function storeScore() {
 
     // Listen for click of Submit button to store initials and score to a score array and to local storage.
     submitBtnEl.addEventListener("click", function() {
-        var initials = document.querySelector("#initials").value;
+        var initials = document.querySelector("#initials").value.trim();
         alert(initials);
 
         // Store initials and score into an array of high scores.
@@ -60,12 +61,12 @@ function storeScore() {
         highScore = [initials,timer];
         highScores = highScores.concat[highScore];
 
+        // localStorage.setItem("highScores", JSON.stringify(highScores));
+        
         console.log(highScore);
         console.log(highScores);
 
         // Sort this array from most to fewest points.
-
-        // localStorage.setItem("");
 
 
 
@@ -73,7 +74,10 @@ function storeScore() {
         localStorage.setItem("score", timer);
 
       });
-      return;
+}
+
+function displayScores() {
+
 }
 
 function displayQ () {
@@ -166,5 +170,7 @@ quizEl.addEventListener('click', function(event) {
     displayQ();
 });
  
+hiScoresBtn.addEventListener('click', displayScores());
+
 // Launch function and initialize settings.
 init();
