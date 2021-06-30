@@ -36,8 +36,12 @@ function init() {
 }
 
 function storeScore() {
+
+    // Hide quiz section and status message section of the page.
     quizEl.innerHTML = '';
     statusEl.setAttribute('class', 'hidden');
+
+    // Show score submission form.
     scoreEl.classList.remove('hidden'); 
     scoreDisp.innerHTML = timer;
 }
@@ -48,30 +52,29 @@ function displayQ () {
 
     if (count < questionsArray.length) {
 
-        // Display question and possible answers by generating HTML.
+        // Display the question by generating HTML.
         quizEl.innerHTML = '<h1>' + questionsArray[count][0] + '</h1>';
 
-        // Cycle through all multiple choice answers in each subarray.
+        // Cycle through all multiple choice answers in each subarray. These reside in the second through the next-to-last elements in each subarray.
         for (i = 1; i < questionsArray[count].length-1; i++) {
 
-            // Build IDs for answer buttons.
-            var buildBtnID = 'answer-' + i;
+            // Assign a variable to represent a class for the answer buttons that will be built, so they can be styled.
             var btnClass = 'multiChoice';
 
             // Build the HTML for the actual buttons.
-            var buildBtn = '<button id='+ buildBtnID +' class='+ btnClass +'>' + i + '. ' + questionsArray[count][i] + '</button><br />';
+            var buildBtn = '<button class='+ btnClass +'>' + i + '. ' + questionsArray[count][i] + '</button><br />';
 
             // Add the buttons to the div.
             quizEl.innerHTML += buildBtn;
         };
     } else {
-        console.log('no more questions');
+
+        // Stop timer once all questions have been asked and answered.
         clearInterval(timeInterval);
         console.log(timer);
 
-        // Calls function to store your score.
+        // Call function to store your score.
         storeScore();
-   
     }
 }
 
