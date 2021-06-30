@@ -27,8 +27,8 @@ I mostly used the class sessions and materials to create this site. I also consu
 
 ## Screenshots
 
-![screenshot 01](Images/code-quiz-screenshot-01.jpg)
-![screenshot 02](Images/code-quiz-screenshot-02.jpg)
-![screenshot 03](Images/code-quiz-screenshot-03.jpg)
+![screenshot 01](Assets/code-quiz-screenshot-01.jpg)
+![screenshot 02](Assets/code-quiz-screenshot-02.jpg)
+![screenshot 03](Assets/code-quiz-screenshot-03.jpg)
 - - -
 © 2021 Ran Gamboa
