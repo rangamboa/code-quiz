@@ -53,26 +53,27 @@ function storeScore() {
 
     // Listen for click of Submit button to store initials and score to a score array and to local storage.
     submitBtnEl.addEventListener("click", function() {
-        var initials = document.querySelector("#initials").value.trim();
-        alert(initials);
+
+
+        var initials = document.querySelector("#initials");
+        var playerScore = {
+            player: initials.value.trim(),
+            score: timer
+        }
+
+        highScores.push(playerScore);
+
+        alert(highScores.toString());
+
+        alert(JSON.stringify(highScores));
+
+
+
+        localStorage.setItem('playerScore', JSON.stringify(playerScore));
 
         // Store initials and score into an array of high scores.
 
-        highScore = [initials,timer];
-        highScores = highScores.concat[highScore];
-
-        // localStorage.setItem("highScores", JSON.stringify(highScores));
-        
-        console.log(highScore);
-        console.log(highScores);
-
-        // Sort this array from most to fewest points.
-
-
-
-        localStorage.setItem("user", initials);
-        localStorage.setItem("score", timer);
-
+        init();
       });
 }
 
