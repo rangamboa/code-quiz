@@ -3,7 +3,8 @@ var count = 0;
 var timer = 75;
 var timeInterval;
 var score;
-var highScores;
+var highScore = [];
+var highScores = [];
 var message;
 
 // Assign variables to various parts of HTML.
@@ -14,6 +15,8 @@ var quizEl = document.querySelector('#quizDiv');
 var scoreEl = document.querySelector('#scoreDiv');
 var statusEl = document.querySelector('#status');
 var scoreDisp = document.querySelector('#scoreDisplay');
+var initInput = document.querySelector('#initials');
+var submitBtnEl = document.querySelector('#submitBtn');
 
 // Declare multiple-choice questions and corresponding answers in respective arrays.
 // The last element in the array signifies the position of the right answer.
@@ -43,7 +46,34 @@ function storeScore() {
 
     // Show score submission form.
     scoreEl.classList.remove('hidden'); 
+
+    // Show the score (time remaining).
     scoreDisp.innerHTML = timer;
+
+    // Listen for click of Submit button to store initials and score to a score array and to local storage.
+    submitBtnEl.addEventListener("click", function() {
+        var initials = document.querySelector("#initials").value;
+        alert(initials);
+
+        // Store initials and score into an array of high scores.
+
+        highScore = [initials,timer];
+        highScores = highScores.concat[highScore];
+
+        console.log(highScore);
+        console.log(highScores);
+
+        // Sort this array from most to fewest points.
+
+        // localStorage.setItem("");
+
+
+
+        localStorage.setItem("user", initials);
+        localStorage.setItem("score", timer);
+
+      });
+      return;
 }
 
 function displayQ () {
@@ -61,7 +91,7 @@ function displayQ () {
             // Assign a variable to represent a class for the answer buttons that will be built, so they can be styled.
             var btnClass = 'multiChoice';
 
-            // Build the HTML for the actual buttons.
+            // Build the HTML dynamically for each button.
             var buildBtn = '<button class='+ btnClass +'>' + i + '. ' + questionsArray[count][i] + '</button><br />';
 
             // Add the buttons to the div.
@@ -71,7 +101,7 @@ function displayQ () {
 
         // Stop timer once all questions have been asked and answered.
         clearInterval(timeInterval);
-        console.log(timer);
+        //console.log(timer);
 
         // Call function to store your score.
         storeScore();
