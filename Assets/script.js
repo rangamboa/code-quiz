@@ -51,9 +51,8 @@ function storeScore() {
     // Show the score (time remaining).
     scoreDisp.innerHTML = timer;
 
-    // Listen for click of Submit button to store initials and score to a score array and to local storage.
-    submitBtnEl.addEventListener("click", function() {
-
+    // Listen for click of Submit button to store initials and score to an array and to local storage.
+    submitBtnEl.addEventListener("click", function(event) {
 
         var initials = document.querySelector("#initials");
         var playerScore = {
@@ -61,19 +60,17 @@ function storeScore() {
             score: timer
         }
 
-        highScores.push(playerScore);
+        // highScore = Object.values(playerScore);
+        // highScores[iteration][0] = playerScore.player;
+        // highScores[iteration][1] = playerScore.score;
 
-        alert(highScores.toString());
-
-        alert(JSON.stringify(highScores));
-
-
+        console.log(highScores);
 
         localStorage.setItem('playerScore', JSON.stringify(playerScore));
 
         // Store initials and score into an array of high scores.
 
-        init();
+
       });
 }
 
@@ -106,7 +103,6 @@ function displayQ () {
 
         // Stop timer once all questions have been asked and answered.
         clearInterval(timeInterval);
-        //console.log(timer);
 
         // Call function to store your score.
         storeScore();
