@@ -65,7 +65,7 @@ function storeScore() {
         // highScores[iteration][0] = playerScore.player;
         // highScores[iteration][1] = playerScore.score;
 
-        // My iteration variable keeps resetting to 0 and I can't figure out why.
+        // My iteration variable keeps resetting to 0, and I can't figure out why.
 
         console.log(highScores);
 
