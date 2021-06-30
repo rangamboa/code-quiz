@@ -23,11 +23,12 @@ I mostly used the class sessions and materials to create this site. I also consu
 
 ## Link to Deployed Github Page
 
-[Portfolio](https://rangamboa.github.io/password-generator/)
+[Code Quiz](https://rangamboa.github.io/password-generator/)
 
 ## Screenshots
 
-![screenshot](Images/password-generator.png)
-
+![screenshot 01](Images/code-quiz-screenshot-01.jpg)
+![screenshot 02](Images/code-quiz-screenshot-02.jpg)
+![screenshot 03](Images/code-quiz-screenshot-03.jpg)
 - - -
 © 2021 Ran Gamboa
