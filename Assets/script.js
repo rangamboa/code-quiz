@@ -11,7 +11,9 @@ var timerEl = document.querySelector('#timeLeft');
 var introEl = document.querySelector('#intro');
 var beginBtn = document.querySelector('#begin');
 var quizEl = document.querySelector('#quizDiv');
-var statusEl = document.querySelector('#status')
+var scoreEl = document.querySelector('#scoreDiv');
+var statusEl = document.querySelector('#status');
+var scoreDisp = document.querySelector('#scoreDisplay');
 
 // Declare multiple-choice questions and corresponding answers in respective arrays.
 // The last element in the array signifies the position of the right answer.
@@ -29,11 +31,15 @@ function init() {
     // (Re)set the screen to play.
     introEl.classList.remove('hidden');
     quizEl.setAttribute('class', 'hidden');
+    scoreEl.setAttribute('class', 'hidden');
     timerEl.textContent = timer;
 }
 
-function hideStatus() {
-    statusEl.innerHTML = '';
+function storeScore() {
+    quizEl.innerHTML = '';
+    statusEl.setAttribute('class', 'hidden');
+    scoreEl.classList.remove('hidden'); 
+    scoreDisp.innerHTML = timer;
 }
 
 function displayQ () {
@@ -63,9 +69,9 @@ function displayQ () {
         clearInterval(timeInterval);
         console.log(timer);
 
-        // go to high scores function.
-        // quizEl.setAttribute('class', 'hidden');
-        // statusEl.setAttribute('class', 'hidden');     
+        // Calls function to store your score.
+        storeScore();
+   
     }
 }
 
@@ -89,12 +95,9 @@ beginBtn.addEventListener('click', function(event) {
     
         if (timer <= 0) {
             clearInterval(timeInterval);
-            // console.log('TIME IS UP SUCKAAAA');
 
-            // go to high scores function.
-            // quizEl.setAttribute('class', 'hidden');
-            // statusEl.setAttribute('class', 'hidden');
-            return;
+            // Calls function to store your score.
+            storeScore();
         }
     }, 1000);
 
@@ -113,13 +116,17 @@ quizEl.addEventListener('click', function(event) {
         message = 'Right!';
     } else {
         message = 'Wrong!';
+
+        // Decrease the time by an additional 10sec and update timer.
         timer-=10;
         timerEl.textContent = timer;
     }
 
+    // Display "correct" or "incorrect" message.
     statusEl.innerHTML = '<hr /><br />' + message;
 
-    setTimeout(hideStatus, 1250);
+    // Clear the message after 1.25sec.
+    setTimeout(function() { statusEl.innerHTML = ''; }, 1250);
 
     // Displays the next question regardless of right/wrong answer.
     count++;

@@ -62,7 +62,7 @@ button {
     border: 1px solid grey;
     border-radius: 5px;
     color: #ddd;
-    background-color: mediumpurple;
+    background-color: darkslateblue;
 }
 
 .hidden {
@@ -78,4 +78,8 @@ button:hover {
 .multiChoice {
     color: white;
     
+}
+
+input {
+    background-color: grey;
 }
