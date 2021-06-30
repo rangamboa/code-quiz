@@ -23,7 +23,7 @@ I mostly used the class sessions and materials to create this site. I also consu
 
 ## Link to Deployed Github Page
 
-[Code Quiz](https://rangamboa.github.io/password-generator/)
+[Code Quiz](https://rangamboa.github.io/code-quiz/)
 
 ## Screenshots
 
